@@ -7,8 +7,9 @@
             "DOM.Iterable",
             "ESNext"
         ],
+        "diagnostics": true,
+        "extendedDiagnostics": true,
         "allowJs": true,
-        "skipLibCheck": true,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "noEmit": true,
@@ -19,6 +20,7 @@
         "isolatedModules": true,
         "jsx": "preserve",
         "incremental": true,
+        "skipLibCheck": true,
         "plugins": [
             {
                 "name": "next"
@@ -27,7 +29,7 @@
         "baseUrl": ".",
         "paths": {
             "@/*": [
-                "./*"
+                "src/*"
             ]
         }
     }

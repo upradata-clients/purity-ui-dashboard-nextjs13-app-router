@@ -1,0 +1,8 @@
+{
+    "files.watcherExclude": {
+        "**/*caca*/**": true,
+        "**/*CACA*/**": true,
+        "USELESS/**": true,
+        ".next/**"
+    }
+}

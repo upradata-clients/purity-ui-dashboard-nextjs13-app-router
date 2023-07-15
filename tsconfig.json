@@ -1,13 +1,18 @@
 {
-    "extends": "./tsconfig.base.json",
+    "extends": "./tsconfig.references.json",
+    "compilerOptions": {
+        "noImplicitAny": false
+    },
     "include": [
         "next-env.d.ts",
-        "**/*.ts",
-        "**/*.tsx",
+        "src/**/*.ts",
+        "src/**/*.tsx",
         ".next/types/**/*.ts"
     ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "USELESS",
+        "*CACA*/**/*"
     ],
     "ts-node": {
         // It is faster to skip typechecking.

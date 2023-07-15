@@ -1,8 +1,14 @@
-import { defineStyleConfig } from '@chakra-ui/react';
+import { defineStyleConfig } from '@chakra-ui/system';
 
 export const buttonStyles = {
     components: {
         Button: defineStyleConfig({
+            baseStyle: {
+                borderRadius: '15px',
+                _focus: {
+                    boxShadow: 'none',
+                },
+            },
             variants: {
                 'no-hover': {
                     _hover: {
@@ -27,13 +33,12 @@ export const buttonStyles = {
                         boxShadow: 'none',
                     },
                 },
-            },
-            baseStyle: {
-                borderRadius: '15px',
-                _focus: {
-                    boxShadow: 'none',
+                variants: {
+                    'with-shadow': {
+                        boxShadow: '0 0 2px 2px #efdfde',
+                    },
                 },
-            },
+            }
         }),
     },
 };

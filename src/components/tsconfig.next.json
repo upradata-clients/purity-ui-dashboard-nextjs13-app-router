@@ -1,0 +1,15 @@
+{
+    "extends": "../tsconfig-base",
+    "compilerOptions": {
+        "rootDir": "../",
+        "target": "ES5"
+    },
+    "include": [
+        "**/*.ts"
+    ],
+    "references": [
+        {
+            "path": "../contexts/"
+        }
+    ]
+}

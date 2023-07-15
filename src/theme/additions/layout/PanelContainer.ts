@@ -1,9 +1,10 @@
-import { defineStyleConfig } from '@chakra-ui/react';
+import { defineStyleConfig } from '@chakra-ui/system';
 
 const PanelContainer = defineStyleConfig({
     baseStyle: {
         p: '30px 15px',
-        minHeight: 'calc(100vh - 123px)',
+        // minHeight: 'calc(100vh - 123px)',
+        overflow: 'auto',
     },
 });
 

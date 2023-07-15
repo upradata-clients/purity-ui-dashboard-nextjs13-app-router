@@ -14,22 +14,45 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+   <html lang='en'>
+     <body className={inter.className}>{children}</body>
+   </html>
   )
 } */
 
-import './globals.css';
+// import './globals.css';
 import type { Metadata } from 'next/types';
 // import { TamaguiProvider } from './TamaguiProvider';
 import { UiProvider } from './provider.ui';
+import type { Routes } from '@/contexts/routes.context';
+import { getPages } from './(app-pages)/getPages';
+import RoutesProvider from './provider.routes';
+import { icons } from './(app-pages)/icons';
 
-const RootLayout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
+
+const getRoutes = async (): Promise<Routes> => {
+    const pages = await getPages();
+    const routes = pages.map(page => ({ ...page, icon: icons[ page.icon ] }));
+
+    return routes;
+};
+
+
+const RootLayout/* : React.FC<React.PropsWithChildren<{}>>  */ = async ({ children }: React.PropsWithChildren<{}>) => {
+    const routes = await getRoutes();
+
     return (
-        <html lang="fr">
+        <html lang='fr'>
             <body>
-                <UiProvider>{children}</UiProvider>
+                <UiProvider>
+                    <RoutesProvider routes={routes}>
+                        {children}
+                    </RoutesProvider>
+                </UiProvider>
             </body>
         </html>
     );
@@ -46,6 +69,9 @@ export const metadata: Metadata = {
         width: 'device-width',
         initialScale: 1,
         maximumScale: 1,
+    },
+    icons: {
+
     },
     title: {
         template: '%s | Victory App',

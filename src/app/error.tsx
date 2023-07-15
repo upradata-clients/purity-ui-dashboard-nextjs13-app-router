@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 export const Error: React.FC<{ error: string; reset: () => {}; }> = ({ error, reset, }) => {
     return (

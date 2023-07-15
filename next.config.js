@@ -7,10 +7,17 @@ const nextConfig = {
     reactStrictMode: false,
     experimental: {
         appDir: true,
+        /* swcTraceProfiling: true,
+        logging: true */
     },
     typescript: {
         tsconfigPath: "./tsconfig.nextjs.json",
-    }
+    },
+    modularizeImports: {
+        /* '@chakra-ui/react': {
+            preventFullImport: true
+        }, */
+    },
 };
 
 module.exports = nextConfig;

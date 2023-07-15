@@ -1,10 +1,14 @@
-import { defineStyleConfig } from '@chakra-ui/react';
+import { defineStyleConfig } from '@chakra-ui/system';
 
 const MainPanel = defineStyleConfig({
     baseStyle: {
-        float: 'right',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'stretch',
+        alignItems: 'stretch',
+        /* float: 'right', */
         maxWidth: '100%',
-        overflow: 'auto',
+        /* overflow: 'auto', */
         position: 'relative',
         maxHeight: '100%',
         transition: 'all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1)',
@@ -12,17 +16,17 @@ const MainPanel = defineStyleConfig({
         transitionProperty: 'top, bottom, width',
         transitionTimingFunction: 'linear, linear, ease',
     },
-    variants: {
-        main: (props) => ({
-            float: 'right',
-        }),
-        rtl: (props) => ({
-            float: 'left',
-        }),
-    },
-    defaultProps: {
-        variant: 'main',
-    },
+    /*  variants: {
+         main: (props) => ({
+             float: 'right',
+         }),
+         rtl: (props) => ({
+             float: 'left',
+         }),
+     }, 
+     defaultProps: {
+         variant: 'main',
+     },*/
 });
 
 export const MainPanelComponent = {
