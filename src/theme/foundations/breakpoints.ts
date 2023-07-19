@@ -1,6 +1,6 @@
 import type { ThemeTypings } from '@chakra-ui/system';
 
-export const breakpoints: Partial<Record<ThemeTypings[ "breakpoints" ], string>> = {
+export const breakpoints: Partial<Record<ThemeTypings[ 'breakpoints' ], string>> = {
     base: '0px',
     sm: '320px',
     md: '768px',

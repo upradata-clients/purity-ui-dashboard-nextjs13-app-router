@@ -114,7 +114,6 @@ export function /* HeaderLinks */AdminNavbarLinks(props: React.PropsWithChildren
                 </Button>
             </NavLink>
             <SidebarResponsive
-                logoText={props.logoText}
                 secondary={props.secondary}
                 routes={routes}
                 // logo={logo}

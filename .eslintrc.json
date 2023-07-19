@@ -1,3 +1,7 @@
 {
-    "extends": "next/core-web-vitals"
+    "root": true,
+    "extends": [
+        "/home/milottit/.config/eslint/eslintrc.js",
+        "next/core-web-vitals"
+    ]
 }

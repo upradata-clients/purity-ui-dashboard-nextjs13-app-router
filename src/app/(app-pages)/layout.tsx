@@ -46,27 +46,15 @@ const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children, ...rest }) =>
     const [ sidebarVariant, setSidebarVariant ] = useState('transparent');
     const [ fixed, setFixed ] = useState(false);
 
-    // functions for changing the states from components
-    /* const getRoute = () => {
-        return window.location.pathname !== '/admin/full-screen-maps';
-    }; */
-
-
-    // This changes navbar state(fixed or not)
-    const isSecondaryNav = () => {
-        return pathname.includes('auth');
-    };
-
+    const isSecondaryNav = () => { pathname.includes('auth'); };
 
     const { isOpen, onOpen, onClose } = useDisclosure();
-    // document.documentElement.dir = 'ltr';
 
     return (
         <Box w='100vw' h='100vh' p='28px 16px'>
             <Flex display='flex' w='100%' h='100%' alignItems='stretch'/* {{ xl: 'center' }} */ justifyContent='flex-start' >
                 <Sidebar
                     routes={routes}
-                    logoText={'THE LOGO TEXT'}
                     display='none'
                     sidebarVariant={sidebarVariant}
                     {...rest}
@@ -76,7 +64,6 @@ const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children, ...rest }) =>
 
                     <AdminNavbar
                         onOpen={onOpen}
-                        logoText={'THE LOGO TEXT'}
                         brandText={pathname}
                         secondary={isSecondaryNav()}
                         fixed={fixed}

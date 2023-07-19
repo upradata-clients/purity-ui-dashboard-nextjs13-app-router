@@ -1,17 +1,17 @@
-import { CreativeTimLogo } from '@/components/Icons/Icons';
+import { useState } from 'react';
+import { Box, Flex, Stack, Text } from '@chakra-ui/layout';
+import { Button } from '@chakra-ui/button';
+import { AtlassianLogoIcon } from '@/components/Icons/Icons';
+import Icon from '@chakra-ui/icon';
 import IconBox from '@/components/Icons/IconBox';
 import { Link } from '@chakra-ui/next-js';
+import { metadata } from '@/data/metadata';
 import { Separator } from '@/components/Separator/Separator';
 import { SidebarHelp } from '@/components/Sidebar/SidebarHelp';
+import { useColorModeValue } from '@chakra-ui/system';
 // import { NavLink, useLocation } from 'react-router-dom';
 import NavLink from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Button } from '@chakra-ui/button';
-import Icon from '@chakra-ui/icon';
-import { Box, Flex, Stack, Text } from '@chakra-ui/layout';
-import { useColorModeValue } from '@chakra-ui/system';
-import { useState } from 'react';
-
 
 
 // this function creates the links and collapses that appear in the sidebar (left menu)
@@ -25,7 +25,7 @@ import { useState } from 'react';
 };
  */
 
-const SidebarContent = ({ logoText, routes }: React.PropsWithChildren<Record<string, any>>) => {
+const SidebarContent = ({ routes }: React.PropsWithChildren<Record<string, any>>) => {
 
     // to check for active links and opened collapses
     const pathname = usePathname();
@@ -202,9 +202,9 @@ const SidebarContent = ({ logoText, routes }: React.PropsWithChildren<Record<str
                         alignItems='center'
                         fontSize='11px'
                     >
-                        <CreativeTimLogo w='32px' h='32px' me='10px' />
+                        <AtlassianLogoIcon w='32px' h='32px' me='10px' />
                         <Text fontSize='sm' mt='3px'>
-                            {logoText}
+                            {metadata.logoText}
                         </Text>
                     </Link>
                     <Separator />

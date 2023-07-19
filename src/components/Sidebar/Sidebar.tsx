@@ -1,15 +1,12 @@
 import { Box } from '@chakra-ui/layout';
 import SidebarContent from './SidebarContent';
-import { useColorModeValue, useTheme, useToken } from '@chakra-ui/system';
-
-// FUNCTIONS
 
 export function Sidebar(props: React.PropsWithChildren<Record<string, any>>) {
     // to check for active links and opened collapses
     // const mainPanel = useRef(null);
     let variantChange = '0.2s linear';
 
-    const { logoText, routes, sidebarVariant } = props;
+    const { routes, sidebarVariant } = props;
 
     //  BRAND
     //  Chakra Color Mode
@@ -42,7 +39,6 @@ export function Sidebar(props: React.PropsWithChildren<Record<string, any>>) {
             borderRadius='16px'/* {sidebarRadius} */
         >
             <SidebarContent routes={routes}
-                logoText={logoText || 'PURITY UI DASHBOARD'}
                 display='none'
                 sidebarVariant={sidebarVariant}
             />

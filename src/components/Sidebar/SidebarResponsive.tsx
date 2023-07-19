@@ -1,10 +1,12 @@
+import { useRef, useState } from 'react';
 import { Box, Flex, Stack, Text } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/button';
-import { CreativeTimLogo } from '@/components/Icons/Icons';
+import { AtlassianLogoIcon } from '@/components/Icons/Icons';
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerOverlay } from '@chakra-ui/modal';
 import { HamburgerIcon, Icon } from '@chakra-ui/icons';
 import IconBox from '@/components/Icons/IconBox';
 import { Link } from '@chakra-ui/next-js';
+import { metadata } from '@/data/metadata';
 import { Separator } from '@/components/Separator/Separator';
 import { SidebarHelp } from '@/components/Sidebar/SidebarHelp';
 import { useColorModeValue } from '@chakra-ui/system';
@@ -12,7 +14,6 @@ import { useDisclosure } from '@chakra-ui/hooks';
 // import { NavLink, useLocation } from 'react-router-dom';
 import NavLink from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useRef, useState } from 'react';
 
 
 function SidebarResponsive(props: React.PropsWithChildren<Record<string, any>>) {
@@ -174,7 +175,7 @@ function SidebarResponsive(props: React.PropsWithChildren<Record<string, any>>) 
         });
     };
 
-    const { logoText, routes, ...rest } = props;
+    const { routes, ...rest } = props;
 
     var links = <>{createLinks(routes)}</>;
     //  BRAND
@@ -196,9 +197,9 @@ function SidebarResponsive(props: React.PropsWithChildren<Record<string, any>>) 
                 alignItems='center'
                 fontSize='11px'
             >
-                <CreativeTimLogo w='32px' h='32px' me='10px' />
+                <AtlassianLogoIcon w='32px' h='32px' me='10px' />
                 <Text fontSize='sm' mt='3px'>
-                    {logoText}
+                    {metadata.logoText}
                 </Text>
             </Link>
             <Separator></Separator>

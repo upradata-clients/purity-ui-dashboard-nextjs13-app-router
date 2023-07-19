@@ -1,3 +1,4 @@
+import { pascalCase } from '@/util';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 // import { lazy } from 'react';
@@ -24,7 +25,7 @@ export const getPages = async () => {
             const pageName = path.basename(source);
 
             return [ {
-                name: pageName.replaceAll(/(?:^(.))|(?:-(\w))/g, (_, char1, char2) => (char1 || char2).toUpperCase()), // Pascal Case
+                name: pascalCase(pageName),
                 href,
                 icon: pageName // <Component /> 
             } ];

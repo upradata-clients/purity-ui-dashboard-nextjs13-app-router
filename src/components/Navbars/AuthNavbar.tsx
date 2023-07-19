@@ -1,25 +1,19 @@
-
-import { Link } from '@chakra-ui/next-js';
-import {
-    CreativeTimLogo,
-    DocumentIcon,
-    HomeIcon,
-    PersonIcon,
-    RocketIcon,
-} from '@/components/Icons/Icons';
-import SidebarResponsive from '@/components/Sidebar/SidebarResponsive';
-import PropTypes from 'prop-types';
 import { useContext, useState } from 'react';
-// import { NavLink } from 'react-router-dom';
-import NavLink from 'next/link';
+import { Box, Flex, HStack, Text } from '@chakra-ui/layout';
+import { Button } from '@chakra-ui/button';
+import { AtlassianLogoIcon, DocumentIcon, HomeIcon, PersonIcon, RocketIcon } from '@/components/Icons/Icons';
+import { Link } from '@chakra-ui/next-js';
+import { metadata } from '@/data/metadata';
+import { Portal } from '@chakra-ui/portal';
+import { type PositionProps } from '@chakra-ui/styled-system';
 // import routes from '@/routes';
 import { RoutesContext } from '@/contexts/routes.context';
-import { Button } from '@chakra-ui/button';
-import { HStack, Flex } from '@chakra-ui/layout';
-import { type PositionProps } from '@chakra-ui/styled-system';
+import SidebarResponsive from '@/components/Sidebar/SidebarResponsive';
 import { useColorModeValue } from '@chakra-ui/system';
-import { Box, Text } from '@chakra-ui/layout';
-import { Portal } from '@chakra-ui/portal';
+// import { NavLink } from 'react-router-dom';
+import NavLink from 'next/link';
+import PropTypes from 'prop-types';
+
 
 const AuthNavBarWrapper: React.FC<React.PropsWithChildren<{ secondary: boolean; }>> = ({ secondary, children }) => {
     return (secondary ? <>{children}</> : <Portal>{children}</Portal>);
@@ -32,7 +26,7 @@ export function AuthNavbar(props: React.PropsWithChildren<Record<string, any>>) 
         setOpen(!open);
     };
 
-    const { logo, logoText, secondary, ...rest } = props;
+    const { logo, secondary, ...rest } = props;
     // verifies if routeName is the one active (in browser input)
 
     // Chakra color mode
@@ -86,9 +80,9 @@ export function AuthNavbar(props: React.PropsWithChildren<Record<string, any>>) 
             alignItems='center'
             color={mainText}
         >
-            <CreativeTimLogo w='32px' h='32px' me='10px' />
+            <AtlassianLogoIcon w='32px' h='32px' me='10px' />
             <Text fontSize='sm' mt='3px'>
-                {logoText}
+                {metadata.logoText}
             </Text>
         </Link>
     );
@@ -186,7 +180,6 @@ export function AuthNavbar(props: React.PropsWithChildren<Record<string, any>>) 
                         display={{ base: 'flex', lg: 'none' }}
                     >
                         <SidebarResponsive
-                            logoText={props.logoText}
                             secondary={props.secondary}
                             routes={routes}
                             // logo={logo}
