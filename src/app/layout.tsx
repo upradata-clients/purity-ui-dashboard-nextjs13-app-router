@@ -20,29 +20,41 @@ export default function RootLayout({
   )
 } */
 
-// import './globals.css';
-import type { Metadata } from 'next/types';
-// import { TamaguiProvider } from './TamaguiProvider';
-import { UiProvider } from './provider.ui';
-import type { Routes } from '@/contexts/routes.context';
-import { getPages } from './(app-pages)/getPages';
-import RoutesProvider from './provider.routes';
-import { icons } from './(app-pages)/icons';
-
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+// import { getPages } from './app-pages/getPages';
+import { icons } from './app-pages/icons';
+// import { MetadataProvider, RoutesProvider, UiProvider } from './providers';
+
+// import { TamaguiProvider } from './TamaguiProvider';
+import type { Routes } from '@/contexts/routes.context';
+import './globals.css';
+import type { Metadata } from 'next/types';
+import { UiProvider, MetadataProvider, RoutesProvider } from '@/app/providers';
+
+
 
 const getRoutes = async (): Promise<Routes> => {
-    const pages = await getPages();
-    const routes = pages.map(page => ({ ...page, icon: icons[ page.icon ] }));
+    /*  const pages = await getPages();
+     const routes = pages.map(page => ({ ...page, icon: icons[ page.icon ] })); */
+    // const fromRoot = (path: string) => `/${path}`;
+
+    const routes: Promise<Routes> = Promise.resolve([
+        { href: '/app-pages/1/dashboard', name: 'Dashboard', icon: icons.dashboard },
+        { href: '/app-pages/2/my-program', name: 'My Program', icon: icons.myProgram },
+        { href: '/app-pages/3/catalogue-fit', name: 'Catalogue Fit', icon: icons.catalogueFit },
+        { href: '/app-pages/4/planning', name: 'Planning', icon: icons.planning },
+        { href: '/app-pages/5/shop', name: 'Shop', icon: icons.shop },
+        { href: '/app-pages/6/profile', name: 'Profile', icon: icons.profile }
+    ]);
 
     return routes;
 };
 
 
-const RootLayout/* : React.FC<React.PropsWithChildren<{}>>  */ = async ({ children }: React.PropsWithChildren<{}>) => {
+const RootLayout = async ({ children }: React.PropsWithChildren<{}>) => {
     const routes = await getRoutes();
 
     return (
@@ -50,7 +62,9 @@ const RootLayout/* : React.FC<React.PropsWithChildren<{}>>  */ = async ({ childr
             <body>
                 <UiProvider>
                     <RoutesProvider routes={routes}>
-                        {children}
+                        <MetadataProvider>
+                            {children}
+                        </MetadataProvider>
                     </RoutesProvider>
                 </UiProvider>
             </body>

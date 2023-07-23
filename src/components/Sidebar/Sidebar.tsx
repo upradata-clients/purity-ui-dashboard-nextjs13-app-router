@@ -6,7 +6,7 @@ export function Sidebar(props: React.PropsWithChildren<Record<string, any>>) {
     // const mainPanel = useRef(null);
     let variantChange = '0.2s linear';
 
-    const { routes, sidebarVariant } = props;
+    const { sidebarVariant } = props;
 
     //  BRAND
     //  Chakra Color Mode
@@ -38,10 +38,7 @@ export function Sidebar(props: React.PropsWithChildren<Record<string, any>>) {
             /*  m={sidebarMargins} */
             borderRadius='16px'/* {sidebarRadius} */
         >
-            <SidebarContent routes={routes}
-                display='none'
-                sidebarVariant={sidebarVariant}
-            />
+            <SidebarContent sidebarVariant={sidebarVariant} />
         </Box>
     );
 }

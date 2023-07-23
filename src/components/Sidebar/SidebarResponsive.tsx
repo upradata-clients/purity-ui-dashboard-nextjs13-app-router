@@ -1,12 +1,10 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { Box, Flex, Stack, Text } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/button';
-import { AtlassianLogoIcon } from '@/components/Icons/Icons';
+import { AtlassianLogoIcon, IconBox } from '@/components';
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerOverlay } from '@chakra-ui/modal';
 import { HamburgerIcon, Icon } from '@chakra-ui/icons';
-import IconBox from '@/components/Icons/IconBox';
 import { Link } from '@chakra-ui/next-js';
-import { metadata } from '@/data/metadata';
 import { Separator } from '@/components/Separator/Separator';
 import { SidebarHelp } from '@/components/Sidebar/SidebarHelp';
 import { useColorModeValue } from '@chakra-ui/system';
@@ -14,12 +12,14 @@ import { useDisclosure } from '@chakra-ui/hooks';
 // import { NavLink, useLocation } from 'react-router-dom';
 import NavLink from 'next/link';
 import { usePathname } from 'next/navigation';
+import { MetadataContext } from '@/contexts';
 
 
 function SidebarResponsive(props: React.PropsWithChildren<Record<string, any>>) {
     // to check for active links and opened collapses
     // let location = useLocation();
     const pathname = usePathname();
+    const metadata = useContext(MetadataContext);
 
     // this is for the rest of the collapses
     const [ state, setState ] = useState({});
@@ -199,7 +199,7 @@ function SidebarResponsive(props: React.PropsWithChildren<Record<string, any>>) 
             >
                 <AtlassianLogoIcon w='32px' h='32px' me='10px' />
                 <Text fontSize='sm' mt='3px'>
-                    {metadata.logoText}
+                    {metadata?.logo?.text}
                 </Text>
             </Link>
             <Separator></Separator>

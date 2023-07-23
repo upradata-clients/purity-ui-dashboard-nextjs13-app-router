@@ -17,7 +17,32 @@ const nextConfig = {
         /* '@chakra-ui/react': {
             preventFullImport: true
         }, */
+        '(\\w*)Icon.*@chakra-ui/icons': {
+            preventFullImport: true,
+            skipDefaultConversion: true,
+            transform: '@chakra-ui/icons/dist/{{ matches.[1] }}',
+
+        },
+        '@/app/providers': {
+            preventFullImport: true,
+            transform: '@/app/providers/{{ kebabCase member }}',
+
+        },
     },
+    // webpack: (
+    //     config,
+    //     { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
+    // ) => {
+    //     const webpackConfig =/** @type {import('webpack').config} */(config);
+
+    //     console.log(webpackConfig.module);
+
+    //     // Important: return the modified config
+    //     return webpackConfig;
+    // },
 };
 
 module.exports = nextConfig;
+
+
+/* "sideEffects": false */

@@ -2,6 +2,7 @@
     "root": true,
     "extends": [
         "/home/milottit/.config/eslint/eslintrc.js",
-        "next/core-web-vitals"
+        "next/core-web-vitals",
+        "turbo"
     ]
 }

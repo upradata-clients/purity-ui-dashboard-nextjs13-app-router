@@ -1,6 +1,6 @@
 import { Avatar } from '@chakra-ui/avatar';
 // chakra imports
-import { ClockIcon } from '@/components/Icons/Icons';
+import { ClockIcon } from '@/components';
 import { Flex, Text } from '@chakra-ui/layout';
 import { useColorModeValue } from '@chakra-ui/system';
 

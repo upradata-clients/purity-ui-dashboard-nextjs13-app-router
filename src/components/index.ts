@@ -1,6 +1,5 @@
-export * from './Charts';
 export * from './Configurator';
-export * from './FixedPlugin';
+export * from './FixedSettingsButton';
 export * from './Footer';
 export * from './Icons';
 export * from './Layout';

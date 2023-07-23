@@ -1,7 +1,7 @@
 import { QuestionIcon } from '@chakra-ui/icons';
 import { Link } from '@chakra-ui/next-js';
 import SidebarHelpImage from '@/assets/img/SidebarHelpImage.png';
-import IconBox from '@/components/Icons/IconBox';
+import { IconBox } from '@/components';
 import { Button } from '@chakra-ui/button';
 import { Flex, Text } from '@chakra-ui/layout';
 

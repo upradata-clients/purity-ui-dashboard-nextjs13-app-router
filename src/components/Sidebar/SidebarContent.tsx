@@ -1,37 +1,21 @@
-import { useState } from 'react';
+import { Fragment, useContext } from 'react';
 import { Box, Flex, Stack, Text } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/button';
-import { AtlassianLogoIcon } from '@/components/Icons/Icons';
-import Icon from '@chakra-ui/icon';
-import IconBox from '@/components/Icons/IconBox';
+import { Icon } from '@chakra-ui/icon';
+import { IconBox, Separator, SidebarHelp } from '@/components';
 import { Link } from '@chakra-ui/next-js';
-import { metadata } from '@/data/metadata';
-import { Separator } from '@/components/Separator/Separator';
-import { SidebarHelp } from '@/components/Sidebar/SidebarHelp';
+import { MetadataContext, RoutesContext } from '@/contexts';
 import { useColorModeValue } from '@chakra-ui/system';
 // import { NavLink, useLocation } from 'react-router-dom';
 import NavLink from 'next/link';
 import { usePathname } from 'next/navigation';
 
 
-// this function creates the links and collapses that appear in the sidebar (left menu)
+const SidebarContent = ({ }: React.PropsWithChildren<Record<string, any>>) => {
 
-/* export const getStaticProps: GetStaticProps<{
-
-}> = async () => {
-    const res = await fetch('https://api.github.com/repos/vercel/next');
-    const repo = await reson();
-    return { props: { repo } };
-};
- */
-
-const SidebarContent = ({ routes }: React.PropsWithChildren<Record<string, any>>) => {
-
-    // to check for active links and opened collapses
     const pathname = usePathname();
-
-    // this is for the rest of the collapses
-    const [ state, setState ] = useState({});
+    const metadata = useContext(MetadataContext);
+    const routes = useContext(RoutesContext);
 
     // verifies if routeName is the one active (in browser input)
     const isActiveRoute = (routeName: string) => {
@@ -46,65 +30,24 @@ const SidebarContent = ({ routes }: React.PropsWithChildren<Record<string, any>>
         const inactiveColor = useColorModeValue('gray.400', 'gray.400');
 
         return routes.map((prop, key) => {
-            /* if (prop.redirect) {
-                return null;
-            }
-            if (prop.category) {
-                var st = {};
-                st[ prop[ 'state' ] ] = !state[ prop.state ];
-                return (
-                    <div key={prop.name}>
-                        <Text
-                            color={activeColor}
-                            fontWeight='bold'
-                            mb={{
-                                xl: '12px',
-                            }}
-                            mx='auto'
-                            ps={{
-                                sm: '10px',
-                                xl: '16px',
-                            }}
-                            py='12px'
-                        >
-                            {document.documentElement.dir === 'rtl'
-                                ? prop.rtlName
-                                : prop.name}
-                        </Text>
-                        {createLinks(prop.views)}
-                    </div>
-                );
-            } */
+
             return (
-                <NavLink href={prop.href /* prop.layout + prop.path */} key={prop.href}>
-                    {isActiveRoute(prop.href /* prop.layout + prop.path */) === 'active' ? (
+                <NavLink href={prop.href} key={prop.href}>
+                    {isActiveRoute(prop.href) === 'active' ? (
                         <Button
                             boxSize='initial'
                             justifyContent='flex-start'
                             alignItems='center'
                             bg={activeBg}
-                            mb={{
-                                xl: '12px',
-                            }}
-                            mx={{
-                                xl: 'auto',
-                            }}
-                            ps={{
-                                sm: '10px',
-                                xl: '16px',
-                            }}
+                            mb={{ xl: '12px' }}
+                            mx={{ xl: 'auto' }}
+                            ps={{ sm: '10px', xl: '16px' }}
                             py='12px'
                             borderRadius='15px'
                             /*  _hover='none' */
                             w='100%'
-                            _active={{
-                                bg: 'inherit',
-                                transform: 'none',
-                                borderColor: 'transparent',
-                            }}
-                            _focus={{
-                                boxShadow: 'none',
-                            }}
+                            _active={{ bg: 'inherit', transform: 'none', borderColor: 'transparent' }}
+                            _focus={{ boxShadow: 'none' }}
                         >
                             <Flex>
                                 {typeof prop.icon === 'string' ? (
@@ -134,28 +77,14 @@ const SidebarContent = ({ routes }: React.PropsWithChildren<Record<string, any>>
                             justifyContent='flex-start'
                             alignItems='center'
                             bg='transparent'
-                            mb={{
-                                xl: '12px',
-                            }}
-                            mx={{
-                                xl: 'auto',
-                            }}
+                            mb={{ xl: '12px' }} mx={{ xl: 'auto' }}
                             py='12px'
-                            ps={{
-                                sm: '10px',
-                                xl: '16px',
-                            }}
+                            ps={{ sm: '10px', xl: '16px' }}
                             borderRadius='15px'
                             /* _hover='none' */
                             w='100%'
-                            _active={{
-                                bg: 'inherit',
-                                transform: 'none',
-                                borderColor: 'transparent',
-                            }}
-                            _focus={{
-                                boxShadow: 'none',
-                            }}
+                            _active={{ bg: 'inherit', transform: 'none', borderColor: 'transparent' }}
+                            _focus={{ boxShadow: 'none' }}
                         >
                             <Flex>
                                 {typeof prop.icon === 'string' ? (
@@ -171,12 +100,7 @@ const SidebarContent = ({ routes }: React.PropsWithChildren<Record<string, any>>
                                         {prop.icon}
                                     </IconBox>
                                 )}
-                                <Text color={inactiveColor} my='auto' fontSize='sm'>
-                                    {prop.name}
-                                    {/* {document.documentElement.dir === 'rtl'
-                                        ? prop.rtlName
-                                        : prop.name} */}
-                                </Text>
+                                <Text color={inactiveColor} my='auto' fontSize='sm'>{prop.name}</Text>
                             </Flex>
                         </Button>
                     )}
@@ -186,6 +110,7 @@ const SidebarContent = ({ routes }: React.PropsWithChildren<Record<string, any>>
     };
 
     const links = /* useMemo(() => */ <>{createLinks(routes)}</>;/* , routes); */
+    const Logo = metadata?.logo?.Icon || Fragment;
 
     return (
         <Flex direction='column' justifyContent='space-between' h='100%'>
@@ -202,10 +127,8 @@ const SidebarContent = ({ routes }: React.PropsWithChildren<Record<string, any>>
                         alignItems='center'
                         fontSize='11px'
                     >
-                        <AtlassianLogoIcon w='32px' h='32px' me='10px' />
-                        <Text fontSize='sm' mt='3px'>
-                            {metadata.logoText}
-                        </Text>
+                        <Logo w='32px' h='32px' me='10px' />
+                        <Text fontSize='sm' mt='3px'>{metadata?.logo?.text}</Text>
                     </Link>
                     <Separator />
                 </Box>

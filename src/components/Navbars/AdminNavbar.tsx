@@ -77,7 +77,7 @@ export function AdminNavbar(props: React.PropsWithChildren<Record<string, any>>)
         paddingX = '30px';
     }
 
-    const changeNavbar = () => {            setScrolled(window.scrollY > 1);    };
+    const changeNavbar = () => { setScrolled(window.scrollY > 1); };
 
     useEffect(() => {
         window.addEventListener('scroll', changeNavbar);

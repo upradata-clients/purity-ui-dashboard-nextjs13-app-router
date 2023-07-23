@@ -3,7 +3,6 @@ import { Box, Flex, HStack, Text } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/button';
 import { AtlassianLogoIcon, DocumentIcon, HomeIcon, PersonIcon, RocketIcon } from '@/components/Icons/Icons';
 import { Link } from '@chakra-ui/next-js';
-import { metadata } from '@/data/metadata';
 import { Portal } from '@chakra-ui/portal';
 import { type PositionProps } from '@chakra-ui/styled-system';
 // import routes from '@/routes';
@@ -13,6 +12,7 @@ import { useColorModeValue } from '@chakra-ui/system';
 // import { NavLink } from 'react-router-dom';
 import NavLink from 'next/link';
 import PropTypes from 'prop-types';
+import { MetadataContext } from '@/contexts';
 
 
 const AuthNavBarWrapper: React.FC<React.PropsWithChildren<{ secondary: boolean; }>> = ({ secondary, children }) => {
@@ -20,11 +20,7 @@ const AuthNavBarWrapper: React.FC<React.PropsWithChildren<{ secondary: boolean; 
 };
 export function AuthNavbar(props: React.PropsWithChildren<Record<string, any>>) {
     const routes = useContext(RoutesContext);
-
-    const [ open, setOpen ] = useState(false);
-    const handleDrawerToggle = () => {
-        setOpen(!open);
-    };
+    const metadata = useContext(MetadataContext);
 
     const { logo, secondary, ...rest } = props;
     // verifies if routeName is the one active (in browser input)
@@ -82,7 +78,7 @@ export function AuthNavbar(props: React.PropsWithChildren<Record<string, any>>) 
         >
             <AtlassianLogoIcon w='32px' h='32px' me='10px' />
             <Text fontSize='sm' mt='3px'>
-                {metadata.logoText}
+                {metadata?.logo?.text}
             </Text>
         </Link>
     );

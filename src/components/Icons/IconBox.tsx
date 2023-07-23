@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/layout';
 
-export default function IconBox(props: React.PropsWithChildren<Record<string, any>>) {
+export function IconBox(props: React.PropsWithChildren<Record<string, any>>) {
     const { children, ...rest } = props;
 
     return (

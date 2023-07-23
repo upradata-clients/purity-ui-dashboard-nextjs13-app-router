@@ -20,12 +20,13 @@ export const UiProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
         {/* <ChakraProvider theme={theme}>
             <GlobalStyle />
         </ChakraProvider> */}
-         {/* disableGlobalStyle to add it manually because of a bug. A lot of Global are added and it is not working properly  */}
+        {/* disableGlobalStyle to add it manually because of a bug. A lot of Global are added and it is not working properly  */}
     </CacheProvider>
 );
 
 
 export default UiProvider;
+
 /* 
 
 function GlobalStyle() {

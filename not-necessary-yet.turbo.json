@@ -1,0 +1,31 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "globalDotEnv": [
+        "env/.env"
+    ],
+    "pipeline": {
+        "build": {
+            "dotEnv": [
+                "env/.env.production.local",
+                "env/.env.local",
+                "env/.env.production",
+                "env/.env"
+            ]
+        },
+        "dev": {
+            "dotEnv": [
+                "env/.env.development.local",
+                "env/.env.local",
+                "env/.env.development",
+                "env/.env"
+            ]
+        },
+        "test": {
+            "dotEnv": [
+                "env/.env.test.local",
+                "env/.env.test",
+                "env/.env"
+            ]
+        }
+    }
+}
