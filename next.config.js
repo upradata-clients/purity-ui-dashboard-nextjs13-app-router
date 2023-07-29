@@ -23,10 +23,14 @@ const nextConfig = {
             transform: '@chakra-ui/icons/dist/{{ matches.[1] }}',
 
         },
-        '@/app/providers': {
+        '.*Provider.*@/app/providers': {
             preventFullImport: true,
             transform: '@/app/providers/{{ kebabCase member }}',
-
+        },
+        '(\\w*)Icon.*@/components': {
+            preventFullImport: true,
+            skipDefaultConversion: true,
+            transform: '@/app/components/Icons/Icons',
         },
     },
     // webpack: (

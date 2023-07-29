@@ -2,18 +2,23 @@
 
 import { CacheProvider } from '@chakra-ui/next-js';
 import { ChakraProvider } from '@chakra-ui/provider';
-// import { /* GlobalStyle , */ useColorMode} from '@chakra-ui/system';
 import { theme } from '@/theme';
+import { cookieStorageManagerSSR, localStorageManager } from '@chakra-ui/system';
+
+// import { /* GlobalStyle , */ useColorMode} from '@chakra-ui/system';
 /* import {
   Global,
 } from "@emotion/react";
 import { memoizedGet as get, runIfFn } from "@chakra-ui/utils";
-import { css, toCSSVar } from "@chakra-ui/styled-system";
+import { css,toCSSVar } from "@chakra-ui/styled-system";
  */
 
-export const UiProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => (
-    <CacheProvider>
-        <ChakraProvider theme={theme} resetCSS /* disableGlobalStyle */>
+export const UiProvider: React.FC<React.PropsWithChildren<{ cookies?: string; }>> = ({ cookies, children }) => {
+    const colorModeManager = typeof cookies === 'string' ? cookieStorageManagerSSR(cookies) : localStorageManager;
+
+    return (
+        <CacheProvider>
+            <ChakraProvider theme={theme} resetCSS /* disableGlobalStyle */ colorModeManager={colorModeManager}>
             {children}
         </ChakraProvider>
 
@@ -22,7 +27,8 @@ export const UiProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
         </ChakraProvider> */}
         {/* disableGlobalStyle to add it manually because of a bug. A lot of Global are added and it is not working properly  */}
     </CacheProvider>
-);
+    );
+};
 
 
 export default UiProvider;

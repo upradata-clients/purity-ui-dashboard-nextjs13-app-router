@@ -1,4 +1,2 @@
-export * from './Sidebar';
-export * from './SidebarContent';
-export * from './SidebarHelp';
-export * from './SidebarResponsive';
+export { Sidebar } from './Sidebar';
+export { SidebarResponsive } from './SidebarResponsive';

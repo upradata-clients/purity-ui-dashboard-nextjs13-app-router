@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/layout';
-import { type ThemingProps } from '@chakra-ui/styled-system';
+import type { ThemingProps } from '@chakra-ui/styled-system';
 import { useStyleConfig } from '@chakra-ui/system';
 
 

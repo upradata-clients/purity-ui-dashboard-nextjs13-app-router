@@ -1,6 +1,6 @@
 import { defineStyleConfig } from '@chakra-ui/system';
 
-const MainPanel = defineStyleConfig({
+export const MainPanel = defineStyleConfig({
     baseStyle: {
         display: 'flex',
         flexDirection: 'column',
@@ -28,9 +28,3 @@ const MainPanel = defineStyleConfig({
          variant: 'main',
      },*/
 });
-
-export const MainPanelComponent = {
-    components: {
-        MainPanel,
-    },
-};

@@ -23,18 +23,19 @@ export default function RootLayout({
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import './globals.css';
 
+import { AppProvider } from '@/app/providers/app-provider';
 // import { getPages } from './app-pages/getPages';
 import { icons } from './app-pages/icons';
-// import { MetadataProvider, RoutesProvider, UiProvider } from './providers';
 
+// import { MetadataProvider, RoutesProvider, UiProvider } from './providers';
 // import { TamaguiProvider } from './TamaguiProvider';
 import type { Routes } from '@/contexts/routes.context';
-import './globals.css';
 import type { Metadata } from 'next/types';
-import { UiProvider, MetadataProvider, RoutesProvider } from '@/app/providers';
 
 
+export { getServerSideProps } from '@/app/providers/app-provider';
 
 const getRoutes = async (): Promise<Routes> => {
     /*  const pages = await getPages();
@@ -54,19 +55,15 @@ const getRoutes = async (): Promise<Routes> => {
 };
 
 
-const RootLayout = async ({ children }: React.PropsWithChildren<{}>) => {
+const RootLayout = async ({ children }: React.PropsWithChildren) => {
     const routes = await getRoutes();
 
     return (
         <html lang='fr'>
             <body>
-                <UiProvider>
-                    <RoutesProvider routes={routes}>
-                        <MetadataProvider>
-                            {children}
-                        </MetadataProvider>
-                    </RoutesProvider>
-                </UiProvider>
+                <AppProvider routes={routes}>
+                    {children}
+                </AppProvider>
             </body>
         </html>
     );

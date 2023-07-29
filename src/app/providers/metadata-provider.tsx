@@ -1,4 +1,3 @@
-
 'use client';
 
 import LogoSvg from '@/assets/svg/logo.svg';

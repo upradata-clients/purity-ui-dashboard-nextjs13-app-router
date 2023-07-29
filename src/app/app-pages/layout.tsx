@@ -1,7 +1,7 @@
 'use client';
 
 import {
-    AdminNavbar,
+    Navbar,
     Footer,
     MainPanel,
     PanelContainer,
@@ -33,11 +33,11 @@ import { usePathname } from 'next/navigation';
 }; */
 
 
-const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children, }) => {
+const Layout: ReactFC = ({ children }) => {
 
     const pathname = usePathname();
 
-    const isSecondaryNav = () => { pathname.includes('auth'); };
+    const isSecondaryNav = () => pathname.includes('auth');
 
     const { onOpen } = useDisclosure();
 
@@ -45,11 +45,11 @@ const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children, }) => {
         <Box w='100vw' h='100vh' p='28px 16px'>
             <Flex display='flex' w='100%' h='100%' alignItems='stretch'/* {{ xl: 'center' }} */ justifyContent='flex-start' >
 
-                <Sidebar sidebarVariant='opaque' />
+                <Sidebar />
 
                 <MainPanel w='100%' /* {{ base: '100%', xl: 'calc(100% - 275px)' }} */ h='100%'>
 
-                    <AdminNavbar onOpen={onOpen} brandText={pathname} secondary={isSecondaryNav()} fixed={false} />
+                    <Navbar onOpen={onOpen} variant={isSecondaryNav() ? 'secondary' : undefined} isFixed={false} />
 
                     <PanelContent>
                         <PanelContainer>

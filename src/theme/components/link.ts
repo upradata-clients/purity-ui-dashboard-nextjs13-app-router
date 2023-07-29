@@ -1,8 +1,6 @@
 import { defineStyleConfig } from '@chakra-ui/system';
 
-export const linkStyles = {
-    components: {
-        Link: defineStyleConfig({
+export const linkStyles = defineStyleConfig({
             // 3. We can add a new visual variant
             baseStyle: {
                 _hover: {
@@ -12,6 +10,4 @@ export const linkStyles = {
                     boxShadow: 'none',
                 },
             },
-        }),
-    },
-};
+});

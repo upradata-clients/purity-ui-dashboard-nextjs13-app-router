@@ -1,8 +1,8 @@
 import { extendTheme } from '@chakra-ui/theme-utils';
-import { badgeStyles, drawerStyles, linkStyles, buttonStyles, cardStyles } from './components';
+import { AdditionalThemeComponents } from './additions';
 import { breakpoints } from './foundations';
-import { globalStyles } from './styles';
-import { MainPanelComponent, PanelContainerComponent, PanelContentComponent } from './additions';
+import { Components } from './components';
+import { config, globalStyles } from './styles';
 
 
 // 2. Extend the theme to include custom colors, fonts, etc
@@ -19,16 +19,11 @@ export const theme = extendTheme({ colors });
  */
 
 export const theme = extendTheme(
+    { config },
     { breakpoints }, // Breakpoints
     globalStyles,
-    cardStyles,
-    buttonStyles, // Button styles
-    badgeStyles, // Badge styles
-    linkStyles, // Link styles
-    drawerStyles, // Sidebar variant for Chakra's drawer
-    MainPanelComponent, // Main Panel component
-    PanelContentComponent, // Panel Content component
-    PanelContainerComponent // Panel Container component
+    Components,
+    AdditionalThemeComponents
 );
 
 

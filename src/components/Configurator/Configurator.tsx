@@ -10,10 +10,11 @@ import PropTypes from 'prop-types';
 
 
 export function Configurator(props: React.PropsWithChildren<Record<string, any>>) {
-    const { secondary, isOpen, onClose, fixed, ...rest } = props;
+    const { secondary, isOpen, onClose, fixed } = props;
     const [ switched, setSwitched ] = useState(props.isChecked);
 
     const { colorMode, toggleColorMode } = useColorMode();
+
     // Chakra Color Mode
     let fixedDisplay = 'flex';
     if (props.secondary) {

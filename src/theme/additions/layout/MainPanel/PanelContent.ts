@@ -1,6 +1,6 @@
 import { defineStyleConfig } from '@chakra-ui/system';
 
-const PanelContent = defineStyleConfig({
+export const PanelContent = defineStyleConfig({
     baseStyle: {
         // ms: 'auto',
         // me: 'auto',
@@ -10,8 +10,4 @@ const PanelContent = defineStyleConfig({
     },
 });
 
-export const PanelContentComponent = {
-    components: {
-        PanelContent,
-    },
-};
+ 

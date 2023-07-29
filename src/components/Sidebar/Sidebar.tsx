@@ -1,49 +1,25 @@
 import { Box } from '@chakra-ui/layout';
-import SidebarContent from './SidebarContent';
+import { ThemingProps, useMultiStyleConfig } from '@chakra-ui/system';
+import { SidebarContent } from './SidebarContent';
+import { StylesProvider } from './Sidebar-provider';
 
-export function Sidebar(props: React.PropsWithChildren<Record<string, any>>) {
-    // to check for active links and opened collapses
-    // const mainPanel = useRef(null);
-    let variantChange = '0.2s linear';
+import type { SidebarStyle } from '@/theme/additions/layout/Sidebar';
 
-    const { sidebarVariant } = props;
 
-    //  BRAND
-    //  Chakra Color Mode
-    let sidebarBg = 'none';
-    /* let sidebarRadius = '0px';
-    let sidebarMargins = '0px'; */
+export const Sidebar: ReactFC<ThemingProps<'Sidebar'>> = ({ size, variant, children, ...rest }) => {
 
-    if (sidebarVariant === 'opaque') {
-        sidebarBg = 'chakra-on-body-bg';
-        //  useColorModeValue('gray.50', 'gray.700');
-        // sidebarRadius = '16px';
-        // sidebarMargins = '16px 0px 16px 16px';
-    }
+    const styles = useMultiStyleConfig('Sidebar', { size, variant }) as SidebarStyle;
 
-    // SIDEBAR
     return (
-        <Box
-            display={{ sm: 'none', xl: 'flex' }}  /* position='fixed' */
-            bgColor={sidebarBg}
-            transition={variantChange}
-            w='260px'
-            maxW='260px'
-            /* ms={{ sm: '16px' }}
-            my={{ sm: '16px' }}
-            h='calc(100% - 32px)' // 16*2 */
-            h='100%'
-            px='20px'
-            py={sidebarVariant === 'opaque' ? '20px' : 0}
-            /*  m={sidebarMargins} */
-            borderRadius='16px'/* {sidebarRadius} */
-        >
-            <SidebarContent sidebarVariant={sidebarVariant} />
+        <Box __css={styles.container} {...rest}>
+            <StylesProvider value={styles}>
+                <SidebarContent>
+                    {children}
+                </SidebarContent>
+            </StylesProvider>
         </Box>
     );
-}
-
-
+};
 
 
 export default Sidebar;

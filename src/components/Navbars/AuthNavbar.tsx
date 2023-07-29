@@ -4,7 +4,7 @@ import { Button } from '@chakra-ui/button';
 import { AtlassianLogoIcon, DocumentIcon, HomeIcon, PersonIcon, RocketIcon } from '@/components/Icons/Icons';
 import { Link } from '@chakra-ui/next-js';
 import { Portal } from '@chakra-ui/portal';
-import { type PositionProps } from '@chakra-ui/styled-system';
+import type { PositionProps } from '@chakra-ui/styled-system';
 // import routes from '@/routes';
 import { RoutesContext } from '@/contexts/routes.context';
 import SidebarResponsive from '@/components/Sidebar/SidebarResponsive';

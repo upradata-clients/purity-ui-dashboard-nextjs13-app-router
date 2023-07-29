@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useRef } from 'react';
 import { Box, Flex, Stack, Text } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/button';
 import { AtlassianLogoIcon, IconBox } from '@/components';
@@ -15,15 +15,14 @@ import { usePathname } from 'next/navigation';
 import { MetadataContext } from '@/contexts';
 
 
-function SidebarResponsive(props: React.PropsWithChildren<Record<string, any>>) {
+export function SidebarResponsive(props: React.PropsWithChildren<Record<string, any>>) {
     // to check for active links and opened collapses
     // let location = useLocation();
     const pathname = usePathname();
     const metadata = useContext(MetadataContext);
 
     // this is for the rest of the collapses
-    const [ state, setState ] = useState({});
-    const mainPanel = useRef(null);
+    // const [ state, setState ] = useState({});
     // verifies if routeName is the one active (in browser input)
     const isActiveRoute = (href) => {
         return pathname.includes(href);
@@ -213,7 +212,6 @@ function SidebarResponsive(props: React.PropsWithChildren<Record<string, any>>) 
     return (
         <Flex
             display={{ sm: 'flex', xl: 'none' }}
-            ref={mainPanel}
             alignItems='center'
         >
             <HamburgerIcon
