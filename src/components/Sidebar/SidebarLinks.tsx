@@ -1,5 +1,5 @@
-import { useContext, useMemo } from 'react';
-import { Flex, HStack, Stack, Text } from '@chakra-ui/layout';
+import { useContext } from 'react';
+import { HStack, Stack, Text } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/button';
 import { Icon } from '@chakra-ui/icon';
 import { IconBox } from '@/components';
@@ -16,8 +16,9 @@ import { useStyles } from './Sidebar-provider';
 } */
 
 function mergeShallow<
-    T extends {}, T2 extends {}, O1 extends T, O2 extends T2
+    T extends object, T2 extends object, O1 extends T, O2 extends T2
 >(o1: O1 | boolean | undefined | null, o2: O2 | boolean | undefined | null): O1 & O2 {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return [ o1, o2 ].reduce((merged, v) => ({ ...merged, ...(v as object || {}) }), {}) as any;
 }
 
@@ -43,13 +44,10 @@ const SidebarLink: ReactFC<Route> = props => {
 
     return (
         <Link w='100%' as={NextLink} href={props.href} key={props.href}>
-            <Button {...buttonsStyle} justifyContent='start'>
+            <Button {...buttonsStyle} justifyContent='start' isActive={isActive}>
                 <HStack justify='start' align='stretch' spacing={spacing}>
-                    {!isIcon ? <Icon>{props.icon}</Icon> : <IconBox {...iconStyle} >{props.icon}</IconBox>}
-
-                    <Text color={color} my='auto' fontSize='sm'>
-                        {props.name}
-                    </Text>
+                    {isIcon ? <IconBox {...iconStyle} >{props.icon}</IconBox> : <Icon>{props.icon}</Icon>}
+                    <Text color={color} my='auto' fontSize='sm'>{props.name}</Text>
                 </HStack>
             </Button>
         </Link>
@@ -70,4 +68,4 @@ export const SidebarLinks: ReactFC = () => {
     );
 };
 
-export default SidebarLinks;
+// export default SidebarLinks;

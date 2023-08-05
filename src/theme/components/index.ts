@@ -7,15 +7,17 @@ import { inputStyles } from './input';
 
 
 import type { ChakraTheme } from '@chakra-ui/theme';
+import { menuStyles } from './menu';
 
 
 export const Components: Partial<ChakraTheme> = {
     components: {
-        badgeStyles,
-        buttonStyles,
-        cardStyles,
-        drawerStyles,
-        linkStyles,
-        inputStyles,
+        Badge: badgeStyles,
+        Button: buttonStyles,
+        Card: cardStyles,
+        Drawer: drawerStyles,
+        Link: linkStyles,
+        Input: inputStyles,
+        Menu: menuStyles
     }
 };

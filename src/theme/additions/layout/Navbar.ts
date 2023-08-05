@@ -18,8 +18,8 @@ export const Navbar = defineMultiStyleConfig({
             filter: 'none',
             backdropFilter: 'auto',
             backdropBlur: 5,
-            borderWidth: '1.5px',
-            borderStyle: 'solid',
+            // borderWidth: '1.5px',
+            // borderStyle: 'solid',
             // transitionDelay: '0s, 0s, 0s, 0s',
             // transitionDuration: ' 0.25s, 0.25s, 0.25s, 0s',
             // transitionProperty: 'box-shadow, background-color, filter, border',
@@ -28,6 +28,7 @@ export const Navbar = defineMultiStyleConfig({
             justifyContent: 'space-between',
             w: '100%',
             mt: 0,
+            ms: 2,
             mb: { base: 2, md: 0 },
             pt: 4,
             pb: 2,
@@ -36,8 +37,9 @@ export const Navbar = defineMultiStyleConfig({
         links: {
             pe: { sm: 0, md: 4 },
             w: { sm: '100%', md: 'auto' },
+            ms: 'auto',
             icon: {
-                color: 'chakra-subtle-text',
+               // color: 'chakra-subtle-text',
             }
         },
     },
@@ -69,7 +71,7 @@ export const Navbar = defineMultiStyleConfig({
             },
             links: {
                 icon: {
-                    color: 'white',
+                  //  color: 'white',
                 }
             }
         },

@@ -20,10 +20,10 @@ export const Sidebar = defineMultiStyleConfig({
         link: {
             activeColor: 'chakra-subtle-text',
             inactiveColor: 'gray.400',
-            spacing: '2',
             button: {
                 base: {
                     bg: 'chakra-subtle-bg',
+                    spacing: 2,
                     w: '100%',
                     h: 'auto',
                     borderRadius: 'base',
@@ -31,8 +31,8 @@ export const Sidebar = defineMultiStyleConfig({
                     py: 3,
                     mb: { xl: 3 },
                     mx: { xl: 'auto' },
-                    _active: { bg: 'inherit', transform: 'none', borderColor: 'transparent' },
-                    _focus: { boxShadow: 'none' },
+                    _active: { bg: 'chakra-inverse-text', transform: 'none', borderColor: 'transparent' },
+                   // _focus: { boxShadow: 'none' },
                 },
                 inactive: {
                     bg: 'transparent'
@@ -46,7 +46,7 @@ export const Sidebar = defineMultiStyleConfig({
                         w: 7
                     },
                     inactive: {
-                        bg: 'chakra-on-body-bg',
+                        bg: 'chakra-inverse-text',
                         color: 'teal.300'
                     }
                 }

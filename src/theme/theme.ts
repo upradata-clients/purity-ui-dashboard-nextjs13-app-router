@@ -4,6 +4,7 @@ import { breakpoints } from './foundations';
 import { Components } from './components';
 import { config, globalStyles } from './styles';
 
+export type { BreakpointNames, Breakpoints } from './foundations'
 
 // 2. Extend the theme to include custom colors, fonts, etc
 /* const colors = {

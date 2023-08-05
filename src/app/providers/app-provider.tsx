@@ -2,9 +2,9 @@
 
 import { ColorModeScript } from '@chakra-ui/system';
 import { theme } from '@/theme';
-import MetadataProvider from './metadata-provider';
-import RoutesProvider from './routes-provider';
-import UiProvider from './ui-provider';
+import { MetadataProvider } from './metadata-provider';
+import { RoutesProvider } from './routes-provider';
+import { UiProvider } from './ui-provider';
 
 import type { Routes } from '@/contexts';
 import type { GetServerSideProps } from 'next/types';

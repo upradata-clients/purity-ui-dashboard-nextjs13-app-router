@@ -1,11 +1,10 @@
 import { Fragment, useContext } from 'react';
-import { Box, Flex, Stack, StackDivider, Text, VStack } from '@chakra-ui/layout';
-import { Link } from '@chakra-ui/next-js';
-import { MetadataContext, RoutesContext } from '@/contexts';
+import { Box, Flex, StackDivider, VStack } from '@chakra-ui/layout';
+import { MetadataContext } from '@/contexts';
+import { NavLink } from '@/components/NavLink';
 // import { Separator } from '@/components';
 import { SidebarHelp } from './SidebarHelp';
 import { SidebarLinks } from './SidebarLinks';
-import { useStyles } from './Sidebar-provider';
 
 
 const separatorBg = 'linear-gradient(90deg, rgba(224, 225, 226, 0) 0%, #E0E1E2 49.52%, rgba(224, 225, 226, 0) 100%)';
@@ -18,13 +17,11 @@ export const SidebarContent: ReactFC = () => {
 
     return (
         <Flex direction='column' justifyContent='space-between' w='100%' h='100%'>
-            <VStack spacing={3} divider={<StackDivider alignSelf='center' h='2px' w='80%' bg={separatorBg} />}>
+            <VStack spacing={6} divider={<StackDivider alignSelf='center' h='1px' w='80%' bg={separatorBg} />}>
 
-                <Link href={'/'} target='_blank' display='flex' lineHeight='100%' mb='30px'
-                    fontWeight='bold' justifyContent='center' alignItems='center' fontSize='11px'>
-
-                    <Logo w='100%' h='32px' me={2.5} />
-                </Link>
+                <NavLink href={'/'} target='_blank' my={2} display='flex' justifyContent='center'>
+                    <Logo w='70%' h='auto' mb={-4} />
+                </NavLink>
 
                 <SidebarLinks />
 

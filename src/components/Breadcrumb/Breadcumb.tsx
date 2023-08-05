@@ -2,33 +2,41 @@ import { Breadcrumb as ChakraBreadcrumb, BreadcrumbItem, BreadcrumbLink } from '
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { NavLink } from '@/components';
 import { chakra } from '@chakra-ui/system';
+import { SegmentWithHref } from '@/util/hooks';
 
 
-const _Breadcrumb: ReactFC<{ paths?: string[]; }> = ({ children, ...props }) => {
-    const paths = props.paths || children as string[];
+export const Breadcrumb = chakra<ReactFC<{ segments?: SegmentWithHref[]; }>>(({ children, ...props }) => {
+    const segments = props.segments || children as SegmentWithHref[];
 
     return (
-        <ChakraBreadcrumb separator={<ChevronRightIcon color='gray.500' />}>
+        <ChakraBreadcrumb separator={<ChevronRightIcon color='chakra-placeholder-color' />}>
             {/* <BreadcrumbItem color={mainText}>
                 <BreadcrumbLink href='#' color={secondaryText}> ---> secondaryText = secondary ? 'white': useColorModeValue('gray.400', 'gray.200');
                     Pages
                 </BreadcrumbLink>
             </BreadcrumbItem> */}
 
-            {paths.map((p, i) => {
-                const href = paths.slice(0, i).join('/');
-
-                return (<BreadcrumbItem color='chakra-subtle-text' key={href}>
-                    <BreadcrumbLink as={NavLink} href={href} color='chakra-subtle-text' isCurrentPage={i === paths.length - 1}>
-                        {p}
-                    </BreadcrumbLink>
+            {segments.filter(s => s.segment !== '').map(segment => (
+                <BreadcrumbItem color='chakra-subtle-text' key={segment.href}>
+                    <Link {...segment} />
                 </BreadcrumbItem>
-                );
-            })}
+            ))}
         </ChakraBreadcrumb>
     );
-};
+});
+
+const Link: ReactFC<SegmentWithHref> = ({ type, segment, href, isLeaf }) => {
+    if (type === 'page' && !isLeaf)
+        return (
+            <BreadcrumbLink as={NavLink} href={href} color='chakra-subtle-text' isCurrentPage={isLeaf}>
+                {segment}
+            </BreadcrumbLink>
+        );
 
 
-export const Breadcrumb = chakra(_Breadcrumb);
-export default Breadcrumb;
+    return <span>{segment}</span>;
+}
+
+
+
+// export default Breadcrumb;

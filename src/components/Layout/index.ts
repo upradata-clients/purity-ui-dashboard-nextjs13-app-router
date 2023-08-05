@@ -1,4 +1,3 @@
 export * from './MainPanel';
+export * from './ContentPanel';
 export * from './PageContent';
-export * from './PanelContainer';
-export * from './PanelContent';

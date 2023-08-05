@@ -4,8 +4,8 @@ export const drawerStyles = defineStyleConfig({
     variants: {
         'with-shadow': {
             placement: 'right',
-            boxShadow: '0 0 2px 2px #efdfde',
-            bgColor: 'red',
+            boxShadow: 'xl',
+           // bgColor: 'red',
         },
     },
 });

@@ -6,11 +6,13 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
-        "next/core-web-vitals"
+        "next/core-web-vitals",
+        "turbo"
     ],
     "parser": "@typescript-eslint/parser",
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "turbo"
     ],
     "rules": {
         "upradata/order": "off",

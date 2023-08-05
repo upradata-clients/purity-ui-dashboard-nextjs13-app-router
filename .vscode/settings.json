@@ -11,5 +11,5 @@
     "editor.formatOnSaveMode": "modificationsIfAvailable",
     "eslint.options": {
         "overrideConfigFile": null
-    },
+    }
 }

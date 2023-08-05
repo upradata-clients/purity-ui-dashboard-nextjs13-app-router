@@ -5,6 +5,7 @@ import { Flex, Text } from '@chakra-ui/layout';
 import { useColorModeValue } from '@chakra-ui/system';
 
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function ItemContent(props: React.PropsWithChildren<Record<string, any>>) {
     const navbarIcon = useColorModeValue('gray.500', 'gray.200');
     const notificationColor = useColorModeValue('gray.700', 'white');

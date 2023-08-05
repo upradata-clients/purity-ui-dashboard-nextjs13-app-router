@@ -1,6 +1,5 @@
 export * from './Breadcrumb';
-export * from './Configurator';
-export * from './FixedSettingsButton';
+// export * from './Configurator';
 export * from './Footer';
 export * from './Icons';
 export * from './Input';
@@ -10,4 +9,4 @@ export * from './NavLink';
 export * from './Navbars';
 export * from './Separator';
 export * from './Sidebar';
-export * from './Tables';
+// export * from './Tables';

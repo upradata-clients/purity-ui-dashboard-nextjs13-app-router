@@ -9,6 +9,11 @@ export const metadata: Metadata = {
         text: 'Victory Fitness',
         svgPath: LogoSvg as string,
         Icon: LogoIcon
+    },
+    layout: {
+        mobile: 'md',
+        tablet: 'lg',
+        desktop: 'xl'
     }
 };
 
@@ -20,4 +25,4 @@ export const MetadataProvider: React.FC<React.PropsWithChildren> = ({ children }
 );
 
 
-export default MetadataProvider;
+// export default MetadataProvider;

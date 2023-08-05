@@ -44,6 +44,53 @@ const nextConfig = {
     //     // Important: return the modified config
     //     return webpackConfig;
     // },
+    rewrites: async () => {
+        return {
+            beforeFiles: [
+                // These rewrites are checked after headers/redirects
+                // and before all files including _next/public files which
+                // allows overriding page files
+                /*  {
+                     source: '/',
+                     destination: '/pages/dashboard',
+                 }, */
+                /*  {
+                     source: '/:path((?!auth|app-pages).*)',
+                     destination: '/app-pages/:path*',
+                 }, */
+            ],
+            // afterFiles: [
+            //     // These rewrites are checked after pages/public files
+            //     // are checked but before dynamic routes
+            //     {
+            //         source: '/non-existent',
+            //         destination: '/somewhere-else',
+            //     },
+            // ],
+            // fallback: [
+            //     // These rewrites are checked after both pages/public files
+            //     // and dynamic routes are checked
+            //     {
+            //         source: '/:path*',
+            //         destination: `https://my-old-site.com/:path*`,
+            //     },
+            // ],
+        };
+    },
+    redirects: async () => {
+        return [
+            {
+                source: '/',
+                destination: '/pages/dashboard',
+                permanent: true
+            },
+            /*  {
+                 source: '/app-pages/:path*',
+                 destination: '/:path*', // Matched parameters can be used in the destination
+                 permanent: true,
+             }, */
+        ];
+    }
 };
 
 module.exports = nextConfig;

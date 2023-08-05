@@ -7,7 +7,7 @@ import { Box, Flex } from '@chakra-ui/layout';
 import { usePathname } from 'next/navigation';
 
 
-const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children, ...rest }) => {
+const Layout: ReactFC = ({ children, ...rest }) => {
 
     useEffect(() => { document.body.style.overflow = 'unset'; });
     const pathname = usePathname();
@@ -15,7 +15,7 @@ const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children, ...rest }) =>
     return (
         <Flex w='100%' flexDirection='column' alignItems='stretch' minH='100vh'>
 
-            <AuthNavbar secondary={pathname.includes('login')} />
+            <AuthNavbar /* secondary={pathname.includes('login')}  *//>
 
             <Box h='100%' flexGrow='1'>{children}</Box>
 

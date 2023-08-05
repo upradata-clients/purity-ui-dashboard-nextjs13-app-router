@@ -1,11 +1,10 @@
-import { useStyleConfig } from '@chakra-ui/system';
-import { Box } from '@chakra-ui/layout';
+import { ThemingProps, useStyleConfig } from '@chakra-ui/system';
+import { Box, BoxProps } from '@chakra-ui/layout';
 
-export function MainPanel(props: React.PropsWithChildren<Record<string, any>>) {
-    const { variant, children, ...rest } = props;
+export const MainPanel: ReactFC<ThemingProps<'ContentPanel'> & BoxProps> = ({ variant, children, ...rest }) => {
+
     const styles = useStyleConfig('MainPanel', { variant });
 
-    // Pass the computed styles into the `__css` prop
     return (
         <Box __css={styles} {...rest}>
             {children}
@@ -13,4 +12,4 @@ export function MainPanel(props: React.PropsWithChildren<Record<string, any>>) {
     );
 }
 
-export default MainPanel;
+// export default MainPanel;

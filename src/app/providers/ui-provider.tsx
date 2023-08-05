@@ -31,7 +31,7 @@ export const UiProvider: React.FC<React.PropsWithChildren<{ cookies?: string; }>
 };
 
 
-export default UiProvider;
+// export default UiProvider;
 
 /* 
 

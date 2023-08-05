@@ -1,16 +1,10 @@
 'use client';
 
-import {
-    Navbar,
-    Footer,
-    MainPanel,
-    PanelContainer,
-    PanelContent,
-    Sidebar
-} from '@/components';
 import { Box, Flex } from '@chakra-ui/layout';
+import { Footer, MainPanel, Navbar, ContentPanel, Sidebar } from '@/components';
 import { useDisclosure } from '@chakra-ui/hooks';
 import { usePathname } from 'next/navigation';
+import { DrawerContext, useDrawerContext } from '@/contexts';
 
 
 /* const PrimaryNavbarLinks: React.FC<{}> = () => {
@@ -40,22 +34,21 @@ const Layout: ReactFC = ({ children }) => {
     const isSecondaryNav = () => pathname.includes('auth');
 
     const { onOpen } = useDisclosure();
+    const drawerContext = useDrawerContext();
 
     return (
         <Box w='100vw' h='100vh' p='28px 16px'>
             <Flex display='flex' w='100%' h='100%' alignItems='stretch'/* {{ xl: 'center' }} */ justifyContent='flex-start' >
 
-                <Sidebar />
+                <DrawerContext.Provider value={drawerContext}>
+                    <Sidebar />
+                </DrawerContext.Provider>
 
                 <MainPanel w='100%' /* {{ base: '100%', xl: 'calc(100% - 275px)' }} */ h='100%'>
 
-                    <Navbar onOpen={onOpen} variant={isSecondaryNav() ? 'secondary' : undefined} isFixed={false} />
+                    <Navbar onOpen={onOpen} variant={isSecondaryNav() ? 'secondary' : undefined} />
 
-                    <PanelContent>
-                        <PanelContainer>
-                            {children}
-                        </PanelContainer>
-                    </PanelContent>
+                    <ContentPanel>{children}</ContentPanel>
 
                     <Footer />
 

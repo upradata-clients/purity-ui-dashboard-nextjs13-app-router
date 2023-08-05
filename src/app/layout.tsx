@@ -26,8 +26,8 @@ import '@fontsource/roboto/700.css';
 import './globals.css';
 
 import { AppProvider } from '@/app/providers/app-provider';
-// import { getPages } from './app-pages/getPages';
-import { icons } from './app-pages/icons';
+// import { getPages } from './pages/getPages';
+import { icons } from './pages/icons';
 
 // import { MetadataProvider, RoutesProvider, UiProvider } from './providers';
 // import { TamaguiProvider } from './TamaguiProvider';
@@ -43,12 +43,12 @@ const getRoutes = async (): Promise<Routes> => {
     // const fromRoot = (path: string) => `/${path}`;
 
     const routes: Promise<Routes> = Promise.resolve([
-        { href: '/app-pages/1/dashboard', name: 'Dashboard', icon: icons.dashboard },
-        { href: '/app-pages/2/my-program', name: 'My Program', icon: icons.myProgram },
-        { href: '/app-pages/3/catalogue-fit', name: 'Catalogue Fit', icon: icons.catalogueFit },
-        { href: '/app-pages/4/planning', name: 'Planning', icon: icons.planning },
-        { href: '/app-pages/5/shop', name: 'Shop', icon: icons.shop },
-        { href: '/app-pages/6/profile', name: 'Profile', icon: icons.profile }
+        { href: '/pages/dashboard', name: 'Dashboard', icon: icons.dashboard },
+        { href: '/pages/my-program', name: 'My Program', icon: icons.myProgram },
+        { href: '/pages/catalogue-fit', name: 'Catalogue Fit', icon: icons.catalogueFit },
+        { href: '/pages/planning', name: 'Planning', icon: icons.planning },
+        { href: '/pages/shop', name: 'Shop', icon: icons.shop },
+        { href: '/pages/profile', name: 'Profile', icon: icons.profile }
     ]);
 
     return routes;
@@ -75,7 +75,7 @@ export default RootLayout;
 
 // either Static metadata
 export const metadata: Metadata = {
-    metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : `http://localhost:${process.env.PORT || 3000}`),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_PUBLIC_URL!),
     viewport: {
         width: 'device-width',
         initialScale: 1,

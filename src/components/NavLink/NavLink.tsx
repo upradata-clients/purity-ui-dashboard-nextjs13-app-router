@@ -2,11 +2,13 @@ import { Link as NextLink, LinkProps as NextLinkProps } from '@chakra-ui/next-js
 import { Link as ChakraLink, LinkProps as ChakraLinkProps } from '@chakra-ui/layout';
 
 
-export const NavLink: ReactFC<NextLinkProps & ChakraLinkProps & { isExternal?: boolean; }> = ({ children, isExternal, ...props }) => {
-    if (isExternal)
-        return <ChakraLink {...props}>{children}</ChakraLink>;
+export type NavLinkProps = NextLinkProps & ChakraLinkProps & { isExternal?: boolean; }
 
-    return <NextLink {...props}>{children}</NextLink>;
+export const NavLink: ReactFC<NavLinkProps> = ({ children, isExternal, href = '', ...props }) => {
+    if (isExternal)
+        return <ChakraLink href={href} {...props}>{children}</ChakraLink>;
+
+    return <NextLink href={href}  {...props}>{children}</NextLink>;
 };
 
-export default NavLink;
+// export default NavLink;

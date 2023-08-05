@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react';
 import { Box } from '@chakra-ui/layout';
 import { Breadcrumb } from '@/components';
 import { useMultiStyleConfig } from '@chakra-ui/system';
-import { usePathname } from 'next/navigation';
 import { type NavbarLinkProps, NavbarLinks } from './NavbarLinks';
 
 import type { ThemingProps } from '@chakra-ui/styled-system';
 import { NavbarStyle } from '@/theme/additions/layout/Navbar';
 import { StylesProvider } from './Navbar-provider';
+import { useSelectedSegments } from '@/util/hooks';
 
-export type NavbarProps = ThemingProps<'Navbar'> & NavbarLinkProps & { isFixed?: boolean; };
+export type NavbarProps = ThemingProps<'Navbar'> & NavbarLinkProps;
 
 
 export const Navbar: ReactFCNoChildren<NavbarProps> = ({ size, variant, onOpen, ...rest }) => {
@@ -21,8 +21,7 @@ export const Navbar: ReactFCNoChildren<NavbarProps> = ({ size, variant, onOpen, 
 
     const [ scrolled, setScrolled ] = useState(false);
 
-    const pathname = usePathname();
-    const paths = pathname.split('/').filter(p => p !== '');
+    const segments = useSelectedSegments();
 
     const changeNavbar = () => { setScrolled(window.scrollY > 1); };
 
@@ -34,8 +33,8 @@ export const Navbar: ReactFCNoChildren<NavbarProps> = ({ size, variant, onOpen, 
     return (
         <Box __css={{ ...containerStyle, ...(scrolled ? scrolledStyle : {}) }} {...rest}>
             <StylesProvider value={styles}>
-                <Breadcrumb paths={paths} mb={{ sm: '8px', md: '0px' }} />
-                <NavbarLinks ms='auto' w={{ sm: '100%', md: 'unset' }} {...{ variant, onOpen }} />
+                <Breadcrumb segments={segments} mb={{ sm: '8px', md: '0px' }} />
+                <NavbarLinks {...{ variant, onOpen }} />
             </StylesProvider>
         </Box>
     );
