@@ -2,21 +2,21 @@
 
 import { useEffect, useState } from 'react';
 import { Box } from '@chakra-ui/layout';
-import { Breadcrumb } from '@/components';
-import { useMultiStyleConfig } from '@chakra-ui/system';
+import { Breadcrumb } from '@/components/Breadcrumb';
+import { useSelectedSegments, useStyleMultiVariantConfig } from '@/util/hooks';
 import { type NavbarLinkProps, NavbarLinks } from './NavbarLinks';
+import { getStylesContext } from './Navbar-provider';
 
 import type { ThemingProps } from '@chakra-ui/styled-system';
-import { NavbarStyle } from '@/theme/additions/layout/Navbar';
-import { StylesProvider } from './Navbar-provider';
-import { useSelectedSegments } from '@/util/hooks';
+
 
 export type NavbarProps = ThemingProps<'Navbar'> & NavbarLinkProps;
 
+const { StylesProvider } = getStylesContext();
 
 export const Navbar: ReactFCNoChildren<NavbarProps> = ({ size, variant, onOpen, ...rest }) => {
 
-    const styles = useMultiStyleConfig('Navbar', { size, variant }) as NavbarStyle;
+    const styles = useStyleMultiVariantConfig('Navbar', { size, variant });
     const { scrolled: scrolledStyle, ...containerStyle } = styles.container;
 
     const [ scrolled, setScrolled ] = useState(false);

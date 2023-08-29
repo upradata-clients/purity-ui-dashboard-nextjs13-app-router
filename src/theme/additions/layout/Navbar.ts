@@ -1,4 +1,4 @@
-import { PartsStyleObject, createMultiStyleConfigHelpers } from '@chakra-ui/styled-system';
+import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system';
 import { mode } from '@chakra-ui/theme-tools';
 
 
@@ -85,4 +85,5 @@ export const Navbar = defineMultiStyleConfig({
 
 
 
-export type NavbarStyle = Exclude<(typeof Navbar)[ 'baseStyle' ], undefined> & { container: { scrolled?: PartsStyleObject; }; };
+// export type NavbarStyle2 = Exclude<(typeof Navbar)[ 'variants' ], undefined> & { container: { scrolled?: PartsStyleObject; }; };
+// export type NavbarStyle = StyleComponent<typeof Navbar>;

@@ -1,8 +1,3 @@
-import type { NavbarStyle } from '@/theme/additions/layout/Navbar';
-import { createStylesContext } from '@chakra-ui/system';
+import { createStylesContextSingleton } from '@/util/hooks';
 
-const [ _StylesProvider, _useStyles ] = createStylesContext('Navbar');
-
-
-export const StylesProvider = _StylesProvider;
-export const useStyles = (): NavbarStyle => _useStyles() as unknown as NavbarStyle;
+export const getStylesContext = createStylesContextSingleton('Navbar');

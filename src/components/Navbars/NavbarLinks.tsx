@@ -13,13 +13,13 @@ import { ItemContent } from '@/components/Menu';
 import { Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/menu';
 import { NavLink } from '@/components/NavLink';
 import { ProfileIcon } from '@/components/Icons';
-import { useStyles } from './Navbar-provider';
+import { getStylesContext } from './Navbar-provider';
 
+const { useStyles } = getStylesContext();
 
 export type NavbarLinkProps = {
     onOpen?: () => unknown;
 };
-
 
 export const NavbarLinks = chakra<ReactFCNoChildren<ThemingProps<'Navbar'> & NavbarLinkProps & StackProps>>(({ /* variant,  children, */ onOpen, ...rest }) => {
     const { /* icon, */ ...containerStyles } = useStyles().links;

@@ -4,13 +4,13 @@ import { useEffect } from 'react';
 import { AuthNavbar, Footer } from '@/components';
 import { Box, Flex } from '@chakra-ui/layout';
 // import { Portal } from '@chakra-ui/portal';
-import { usePathname } from 'next/navigation';
+// import { usePathname } from 'next/navigation';
 
 
 const Layout: ReactFC = ({ children, ...rest }) => {
 
     useEffect(() => { document.body.style.overflow = 'unset'; });
-    const pathname = usePathname();
+    /*  const pathname = usePathname(); */
 
     return (
         <Flex w='100%' flexDirection='column' alignItems='stretch' minH='100vh'>

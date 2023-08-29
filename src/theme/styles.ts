@@ -14,6 +14,9 @@ export const globalStyles: Partial<ChakraTheme> = {
             'chakra-subtle-bg': { _light: 'gray.100', _dark: 'gray.700' },
             'chakra-subtle-text': { _light: 'gray.600', _dark: 'gray.400' },
             'chakra-placeholder-color': { _light: 'gray.500', _dark: 'whiteAlpha.600' },
+
+            'primary': { _light: 'pink.400', _dark: 'pink.300' },
+            'on-primary': { _light: 'white', _dark: 'gray.50' }
         }
     },
     colors: {

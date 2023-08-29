@@ -1,10 +1,11 @@
 import { extendTheme } from '@chakra-ui/theme-utils';
 import { AdditionalThemeComponents } from './additions';
-import { breakpoints } from './foundations';
+import { breakpoints, shadows } from './foundations';
 import { Components } from './components';
 import { config, globalStyles } from './styles';
 
 export type { BreakpointNames, Breakpoints } from './foundations'
+export type ComponentStyles = (typeof Components)[ 'components' ] & (typeof AdditionalThemeComponents)[ 'components' ];
 
 // 2. Extend the theme to include custom colors, fonts, etc
 /* const colors = {
@@ -21,7 +22,7 @@ export const theme = extendTheme({ colors });
 
 export const theme = extendTheme(
     { config },
-    { breakpoints }, // Breakpoints
+    { breakpoints, shadows },
     globalStyles,
     Components,
     AdditionalThemeComponents

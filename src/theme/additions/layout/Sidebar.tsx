@@ -1,3 +1,4 @@
+import { StyleComponent } from '@/theme/util';
 import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system';
 
 
@@ -20,6 +21,7 @@ export const Sidebar = defineMultiStyleConfig({
         link: {
             activeColor: 'chakra-subtle-text',
             inactiveColor: 'gray.400',
+            spacing: '2',
             button: {
                 base: {
                     bg: 'chakra-subtle-bg',
@@ -88,4 +90,4 @@ export const Sidebar = defineMultiStyleConfig({
 
 
 
-export type SidebarStyle = Exclude<(typeof Sidebar)[ 'baseStyle' ], undefined>;
+export type SidebarStyle = StyleComponent<typeof Sidebar>;

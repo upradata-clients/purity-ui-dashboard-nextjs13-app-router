@@ -1,7 +1,3 @@
-import type { SidebarStyle } from '@/theme/additions';
-import { createStylesContext } from '@chakra-ui/system';
+import { createStylesContextSingleton } from '@/util/hooks';
 
-export const [ StylesProvider, _useStyles ] = createStylesContext('SideBar');
-
-
-export const useStyles = (): SidebarStyle => _useStyles() as any;
+export const getStylesContext = createStylesContextSingleton('Sidebar');

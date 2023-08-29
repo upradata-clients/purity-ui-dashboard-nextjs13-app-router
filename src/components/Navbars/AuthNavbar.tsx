@@ -1,17 +1,17 @@
 import { Fragment, useContext } from 'react';
-import { Box, BoxProps, Flex, HStack, Text } from '@chakra-ui/layout';
+import { Box, BoxProps, Flex, Text } from '@chakra-ui/layout';
 import { Button, ButtonProps, IconButton, IconButtonProps } from '@chakra-ui/button';
 // import SidebarResponsive from '@/components/Sidebar/SidebarResponsive';
-import { chakra, createStylesContext, useColorMode, useMultiStyleConfig } from '@chakra-ui/system';
+import { chakra, useColorMode } from '@chakra-ui/system';
+import { createStylesContext, useStyleMultiVariantConfig } from '@/util/hooks';
 import { Hide } from '@chakra-ui/media-query';
-import { HomeIcon, PersonAuthIcon } from '@/components/Icons/Icons';
+import { HomeIcon, PersonAuthIcon } from '@/components/Icons';
 // import { NavLink } from 'react-router-dom';
 import { MetadataContext } from '@/contexts';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { NavLink, NavLinkProps } from '@/components/NavLink';
 import { Portal } from '@chakra-ui/portal';
-import { NavLink, NavLinkProps } from '../NavLink';
 
-import type { AuthNavbarStyle } from '@/theme/additions/layout/AuthNavbar';
 import type { IconProps } from '@chakra-ui/icon';
 import type { ThemingProps } from '@chakra-ui/styled-system';
 
@@ -20,59 +20,20 @@ const AuthNavBarWrapper: React.FC<React.PropsWithChildren<{ secondary: boolean; 
     return (secondary ? <>{children}</> : <Portal>{children}</Portal>);
 };
 
-const [ StylesProvider, _useStyles ] = createStylesContext('AuthNavbar');
-const useStyles = (): AuthNavbarStyle => _useStyles() as unknown as AuthNavbarStyle;
+const { StylesProvider, useStyles } = createStylesContext('AuthNavbar');
 
 
 export const AuthNavbar: ReactFC<ThemingProps<'AuthNavbar'>> = ({ size, variant }) => {
-    const styles = useMultiStyleConfig('AuthNavbar', { size, variant }) as AuthNavbarStyle;
+    const styles = useStyleMultiVariantConfig('AuthNavbar', { size, variant });
 
-    // // Chakra color mode
-    // let navbarIcon = useColorModeValue('gray.700', 'gray.200');
-    // let mainText = useColorModeValue('gray.700', 'gray.200');
-    // let navbarBg = useColorModeValue(
-    //     'linear-gradient(112.83deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.8) 110.84%)',
-    //     'linear-gradient(112.83deg, rgba(255, 255, 255, 0.21) 0%, rgba(255, 255, 255, 0) 110.84%)'
-    // );
-    // let navbarBorder = useColorModeValue(
-    //     '1.5px solid #FFFFFF',
-    //     '1.5px solid rgba(255, 255, 255, 0.31)'
-    // );
-    // let navbarShadow = useColorModeValue(
-    //     '0px 7px 23px rgba(0, 0, 0, 0.05)',
-    //     'none'
-    // );
-    // let navbarFilter = useColorModeValue(
-    //     'none',
-    //     'drop-shadow(0px 7px 23px rgba(0, 0, 0, 0.05))'
-    // );
-    // let navbarBackdrop = 'blur(21px)';
-    // let bgButton = useColorModeValue(
-    //     'linear-gradient(81.62deg, #313860 2.25%, #151928 79.87%)',
-    //     'gray.800'
-    // );
-    // let navbarPosition = 'fixed' as PositionProps[ 'position' ];
-    // let colorButton = 'white';
-
-    // if (props.secondary === true) {
-    //     navbarIcon = 'white';
-    //     navbarBg = 'none';
-    //     navbarBorder = 'none';
-    //     navbarShadow = 'initial';
-    //     navbarFilter = 'initial';
-    //     navbarBackdrop = 'none';
-    //     bgButton = 'white';
-    //     colorButton = 'gray.700';
-    //     mainText = 'white';
-    //     navbarPosition = 'inherit'; // 'absolute';
-    // }
     const { colorMode, toggleColorMode } = useColorMode();
-
 
     const linkPaths: Record<'center' | 'right', LinkPath[]> = {
         center: [
             { name: 'Dashboard', href: '/pages/dashboard', Icon: HomeIcon },
-            { name: 'Sign In', href: '/auth/signin', Icon: PersonAuthIcon }, ],
+            { name: 'Sign In', href: '/auth/signin', Icon: PersonAuthIcon },
+            { name: 'Sign Up', href: '/auth/signup', Icon: PersonAuthIcon }
+        ],
         right: [
             {
                 Icon: colorMode === 'light' ? MoonIcon : SunIcon,
@@ -117,13 +78,13 @@ export const AuthNavbar: ReactFC<ThemingProps<'AuthNavbar'>> = ({ size, variant 
 
 const Brand: ReactFC = () => {
     const metadata = useContext(MetadataContext);
-    const Logo = metadata?.logo?.Icon || Fragment;
+    const Logo = metadata?.logoSecondary?.Icon || metadata?.logo?.Icon || Fragment;
 
     return (
         <NavLink href='/' display='flex' lineHeight='100%' fontWeight='bold' justifyContent='center' alignItems='center' _hover={{ textDecoration: 'none' }}
         /* color={mainText} */>
-            <Logo /* w='32px' */ h='32px' me='10px' />
-            <Text fontSize='sm' mt='3px'>{metadata?.logo?.text}</Text>
+            <Logo w='100px' h='auto' me='10px' />
+            {/* <Text fontSize='sm' mt='3px'>{metadata?.logo?.text}</Text> */}
         </NavLink>
     );
 };

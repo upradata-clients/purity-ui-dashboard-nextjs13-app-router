@@ -1,14 +1,16 @@
 'use client';
 
-import LogoSvg from '@/assets/svg/logo.svg';
-import { LogoIcon } from '@/components';
+import { LogoIcon, Logo2Icon } from '@/components/Icons';
 import { Metadata, MetadataContext } from '@/contexts';
 
 export const metadata: Metadata = {
     logo: {
         text: 'Victory Fitness',
-        svgPath: LogoSvg as string,
         Icon: LogoIcon
+    },
+    logoSecondary: {
+        text: 'Victory Fitness',
+        Icon: Logo2Icon
     },
     layout: {
         mobile: 'md',

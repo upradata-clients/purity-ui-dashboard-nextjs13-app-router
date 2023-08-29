@@ -1,10 +1,16 @@
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
+import { createStylesContext as _createStylesContext, useChakra } from '@chakra-ui/system';
+import { CreateContextReturn } from '@chakra-ui/react-utils';
+import { Dict, filterUndefined, memoizedGet as get, mergeWith, omit } from '@chakra-ui/utils';
+import { resolveStyleConfig, ResponsiveValue, SystemStyleObject, ThemeTypings, ThemingProps } from '@chakra-ui/styled-system';
 import { clientHookInServerComponentError } from 'next/dist/client/components/client-hook-in-server-component-error';
 import { getSegmentValue } from 'next/dist/client/components/router-reducer/reducers/get-segment-value';
-import { GlobalLayoutRouterContext/* , LayoutRouterContext */ } from 'next/dist/shared/lib/app-router-context';
-import { usePathname } from 'next/navigation';
+import { GlobalLayoutRouterContext } from 'next/dist/shared/lib/app-router-context';
+import isEqual from 'react-fast-compare';
 
+// import { usePathname } from 'next/navigation';
 import type { FlightRouterState } from 'next/dist/server/app-render/types';
+
 
 export type SegmentType = 'layout' | 'group' | 'slot' | 'page';
 
@@ -105,4 +111,117 @@ export const useSelectedSegments = (parallelRouteKeys: string | string[] = 'chil
     // console.log({ caca: getSelectedSegment(tree, parallelRouteKeys) });
 
     return getSelectedSegment(tree, parallelRouteKeys);
+};
+
+
+type Variant<ThemeComponent extends string = string> = ResponsiveValue<
+    ThemeComponent extends keyof ThemeTypings[ 'components' ] ? ThemeTypings[ 'components' ][ ThemeComponent ][ 'variants' ] : string
+>;
+
+export type ComponentStyle<ThemeComponent extends string> =
+    ThemeComponent extends keyof ThemeTypings[ 'styles' ] ?
+    ThemeTypings[ 'styles' ][ ThemeComponent ] :
+    ThemeTypings[ 'styles' ][ 'generic' ];
+
+export const useStyleMultiVariantConfig = <ThemeComponent extends string, Variants extends Variant<ThemeComponent>[]>(
+    componentName: ThemeComponent,
+    props?: ThemingProps<ThemeComponent> & { variants?: Variants; } & Dict
+): ComponentStyle<ThemeComponent> => {
+
+    return useStyleConfig(componentName, props) as unknown as ComponentStyle<ThemeComponent>;
+
+};
+
+
+// copied from https://github.com/chakra-ui/chakra-ui/blob/main/packages/core/system/src/use-style-config.ts ==> useStyleConfigImpl
+const useStyleConfig = (
+    themeKey: string | null,
+    props: ThemingProps & { variants?: Variant[]; } & Dict = {},
+) => {
+
+    type StyleConfig = Parameters<typeof resolveStyleConfig>[ 0 ];
+    type StyleValues = Parameters<ReturnType<typeof resolveStyleConfig>>[ 0 ];
+
+
+    const { styleConfig: styleConfigProp } = props;
+
+    const { theme, colorMode } = useChakra();
+
+    const themeStyleConfig = themeKey
+        ? get(theme, `components.${themeKey}`)
+        : undefined;
+
+    const styleConfig: StyleConfig & {
+        defaultProps: {
+            size?: string;
+            variant?: string;
+            colorScheme?: string;
+        };
+    } = styleConfigProp || themeStyleConfig;
+
+    /**
+     * Store the computed styles in a `ref` to avoid unneeded re-computation
+     */
+    type StylesRef = SystemStyleObject | Record<string, SystemStyleObject>;
+
+    const stylesRef = useRef<StylesRef>({});
+
+
+    const { variants = [ props?.variant || styleConfig?.defaultProps.variant ], ...rest } = props;
+
+    type MergeProps = Omit<ThemingProps, 'variant' | 'styleConfig'> & { variants: Variant[]; } & Omit<StyleValues, 'variant'>;
+
+    const mergedProps: MergeProps = mergeWith(
+        { theme, colorMode, variants },
+        styleConfig?.defaultProps ?? {},
+        filterUndefined(omit(rest, [ 'children', 'variant' ])),
+    );
+
+    const mergeStyles = (props: Omit<MergeProps, 'variants'> & { variant: Variant; }) => {
+        const getStyles = resolveStyleConfig(styleConfig);
+        const styles = getStyles(props);
+
+        const isStyleEqual = isEqual(stylesRef.current, styles);
+
+        if (!isStyleEqual) {
+            stylesRef.current = styles;
+        }
+    };
+
+    if (styleConfig) {
+        const { variants, ...props } = mergedProps;
+        variants.map(variant => mergeStyles({ ...props, variant }));
+    }
+
+    return stylesRef.current;
+};
+
+
+export type StylesContext<
+    ThemeComponent extends string,
+    T extends CreateContextReturn<ComponentStyle<ThemeComponent>> = CreateContextReturn<ComponentStyle<ThemeComponent>>
+> = { StylesProvider: T[ 0 ]; useStyles: T[ 1 ]; };
+
+export const createStylesContext = <ThemeComponent extends string>(componentName: ThemeComponent): StylesContext<ThemeComponent> => {
+
+    const [ StylesProvider, useStyles ] = _createStylesContext(componentName);
+
+    return { StylesProvider, useStyles } as unknown as StylesContext<ComponentStyle<ThemeComponent>> ;
+};
+
+
+export const createStylesContextSingleton = <ThemeComponent extends string>(componentName: ThemeComponent) => {
+    type GetContext = {
+        (): StylesContext<ThemeComponent>;
+        memo?: StylesContext<ThemeComponent> | undefined;
+    };
+
+     const getContext: GetContext = () => {
+        if (!getContext.memo)
+            getContext.memo = createStylesContext(componentName);
+
+        return getContext.memo!;
+    };
+
+    return getContext;
 };

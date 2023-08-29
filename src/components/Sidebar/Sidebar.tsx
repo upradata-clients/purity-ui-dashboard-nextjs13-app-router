@@ -4,10 +4,11 @@ import { ThemingProps, useMultiStyleConfig } from '@chakra-ui/system';
 import { useBreakpointValue } from '@chakra-ui/media-query';
 import { SidebarContent } from './SidebarContent';
 import { SidebarDrawer } from './SidebarDrawer';
-import { StylesProvider } from './Sidebar-provider';
+import { getStylesContext } from './Sidebar-provider';
 
 import type { SidebarStyle } from '@/theme/additions/layout/Sidebar';
 
+const { StylesProvider } = getStylesContext();
 
 export const Sidebar: ReactFCNoChildren<ThemingProps<'Sidebar'>> = ({ size, variant, ...rest }) => {
 

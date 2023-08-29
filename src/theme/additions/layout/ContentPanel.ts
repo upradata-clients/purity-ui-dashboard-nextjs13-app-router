@@ -21,4 +21,4 @@ export const ContentPanel = defineMultiStyleConfig({
 
 
 
-export type ContentPanelStyle = Exclude<(typeof ContentPanel)[ 'baseStyle' ], undefined>;
+// export type ContentPanelStyle = Exclude<(typeof ContentPanel)[ 'baseStyle' ], undefined>;

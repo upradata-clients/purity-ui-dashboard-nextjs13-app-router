@@ -7,7 +7,7 @@ import { Sidebar } from './Sidebar';
 import type { ChakraTheme } from '@chakra-ui/theme';
 
 
-export const AdditionalThemeComponents: Partial<ChakraTheme> = {
+export const AdditionalThemeComponents = {
     components: {
         Navbar,
         AuthNavbar,
@@ -15,4 +15,4 @@ export const AdditionalThemeComponents: Partial<ChakraTheme> = {
         ContentPanel,
         MainPanel
     }
-};
+} satisfies Partial<ChakraTheme>;

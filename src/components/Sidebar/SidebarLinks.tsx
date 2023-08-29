@@ -2,18 +2,22 @@ import { useContext } from 'react';
 import { HStack, Stack, Text } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/button';
 import { Icon } from '@chakra-ui/icon';
-import { IconBox } from '@/components';
+import { IconBox } from '@/components/Icons';
 import { Link } from '@chakra-ui/next-js';
 import { Route, RoutesContext } from '@/contexts';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useStyles } from './Sidebar-provider';
+import {  getStylesContext } from './Sidebar-provider';
 
 // type AU<T, Rest = {}> = T extends any[] ? T[ number ] extends infer U ? U extends U ? 1 : never : never : never;
 
 /* function mergeShallow<T extends {}, O extends (T | boolean | undefined | null)[]>(...o: O): Exclude<O[ number ], boolean | undefined | null> {
     return o.reduce((merged, v) => ({ ...merged, ...(v as object || {}) }), {}) as any;
 } */
+
+
+const { useStyles } = getStylesContext();
+
 
 function mergeShallow<
     T extends object, T2 extends object, O1 extends T, O2 extends T2

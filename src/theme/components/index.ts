@@ -10,7 +10,7 @@ import type { ChakraTheme } from '@chakra-ui/theme';
 import { menuStyles } from './menu';
 
 
-export const Components: Partial<ChakraTheme> = {
+export const Components = {
     components: {
         Badge: badgeStyles,
         Button: buttonStyles,
@@ -20,4 +20,4 @@ export const Components: Partial<ChakraTheme> = {
         Input: inputStyles,
         Menu: menuStyles
     }
-};
+} satisfies Partial<ChakraTheme>;

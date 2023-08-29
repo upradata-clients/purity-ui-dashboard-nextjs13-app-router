@@ -1,6 +1,6 @@
 import { Breadcrumb as ChakraBreadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/breadcrumb';
 import { ChevronRightIcon } from '@chakra-ui/icons';
-import { NavLink } from '@/components';
+import { NavLink } from '@/components/NavLink';
 import { chakra } from '@chakra-ui/system';
 import { SegmentWithHref } from '@/util/hooks';
 
